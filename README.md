@@ -1,4 +1,5 @@
-# Coursera Getting and Cleaning Data Course Project: Run Analysis
+# Coursera Getting and Cleaning Data
+# Course Project: Run Analysis
 
 The following script is the final outcome of Courera's "Getting and Cleaning Data" Course Project.
 
