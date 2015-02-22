@@ -20,4 +20,4 @@ Non-measure variables include "Subject" and "Activity Label" as seen below:
   - 5 STANDING
   - 6 LAYING
 
-The origianl dataset included a variety of summary statistics; this dataset extracted only variables calculating the Mean and Standard Deviation of the original dataset (denoted by the "Measure Features"). This dataset calculated the mean value of each of this subset dataset by Subject and Activity (denoted by Activity Label).
+The origianl dataset included a variety of summary statistics. The dataset prepared for this project is a subset of the original dataset; it extracted only variables calculating the Mean and Standard Deviation of the original dataset (denoted by the "Measure Features") and then calculated the average of each variable for each activity and each subject.
