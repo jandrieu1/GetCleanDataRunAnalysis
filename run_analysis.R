@@ -1,5 +1,5 @@
 
-# home directory
+# identify home directory (to be used throughout script)
 
 fulldir <- getwd() # finds your working directory
 
@@ -9,7 +9,7 @@ library(plyr)
 library(gmodels)
 library(doBy)
 
-### download zip file to folder
+### download zip file to working directory
 
 zipurl <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
 download.file(zipurl, "dataset.zip", method="auto")
@@ -17,7 +17,7 @@ unzip("dataset.zip", exdir="dataset")
 
 ### Merges the training and the test sets to create one data set ###
 
-# read and merge training files
+# read and merge the three training files
 
 tdir <- "dataset/UCI HAR Dataset/train" # directory folder
 
@@ -42,7 +42,7 @@ train <- cbind(train, ts)
 x <- c("dataset")
 train[, x] <- "Train"
 
-# read test files
+# read and merge the three test files
 
 sdir <- "dataset/UCI HAR Dataset/test" # directory folder
 
@@ -81,15 +81,19 @@ f_dir <- paste(fulldir, fdir, "features.txt", sep="/")
 feat = read.table(f_dir)
 feat2 <- data.frame(do.call('rbind', strsplit(as.character(feat$V2), '-', fixed=TRUE)))
 feat <- cbind(feat, feat2)
+
+# keeps wanted variables only (i.e. mean() and std())
+
 featx <- feat[with(feat, X2 == "mean()" | X2 == "std()"), ]
+
+# cleans variable names before merging into master file
+
 featx$varname <- gsub("\\-mean\\()", "M", featx$V2)
 featx$varname <- gsub("\\-std\\()", "S", featx$varname)
 featx$varname <- gsub("Body", "B", featx$varname)
 featx$varname <- gsub("Gravity", "G", featx$varname)
 
-featx[1:5, c(2, 6)]
-
-# create index
+# create index that drops unwanted variables from master file (generates mc=master clean)
 
 colind <- row.names(featx)
 colind <- as.numeric(colind)
@@ -100,27 +104,30 @@ mc <- master[, c(colind, 562:564)]
 
 ### Uses descriptive activity names to name the activities in the data set
 
-adir <- "dataset/UCI HAR Dataset" # directory folder
+adir <- "dataset/UCI HAR Dataset" # activities directory folder
 a_dir <- paste(fulldir, adir, "activity_labels.txt", sep="/")
 act = read.table(a_dir)
 
-# merge activity labels into master file
+# merge activity labels into master clean file (mc)
 
 mc <- merge(mc, act, by.x="Label", by.y="V1", all=TRUE)
 names(mc)[70]<- "ActivityLabel"
 
 ### Appropriately labels the data set with descriptive variable names. 
 
-featnames <- as.vector(featx[, 6])
+featnames <- as.vector(featx[, 6]) # uses clean variables names (varname)
 featnames <- c("Label", featnames, "Subject", "dataset", "ActivityLabel")
 
 names(mc) <- c(featnames)
 
-### From the data set in step 4, creates a second, independent tidy data set with the 
-#   average of each variable for each activity and each subject
+### From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject
+
+# master file becomes mcby (master clean by Subject & Activity)
 
 mcby <- do.call(data.frame, aggregate(. ~ Subject + ActivityLabel, 
                                       mc[, c(2:67, 70, 68)], function(x) c(mean = mean(x))))
+
+# order mcby
 
 mcby <- orderBy(~Subject+ActivityLabel, mcby)
 
