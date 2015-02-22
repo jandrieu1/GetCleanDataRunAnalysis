@@ -13,10 +13,26 @@ The underlying dataset used for this project can be found at the link below:
 
 https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip 
 
-There were five major steps associated with this project as spelled out below (from Course Project instructions):
+There were five major steps associated with this project as spelled out below:
 
-1. Merge the training and the test sets to create one data set
-2. Extract only the measurements on the mean and standard deviation for each measurement. 
-3. Use descriptive activity names to name the activities in the data set
-4. Appropriately label the data set with descriptive variable names. 
-5. From the data set in step 4, create a second, independent tidy data set with the average of each variable for each activity and each subject
+1. Prep-work
+  * Identify working directory (to be used throughout script)
+  * Load relevant packages
+  * Download zip file to working directory
+2. Merges the training and the test sets to create one data set
+  * Read and merge the three training files
+  * Read and merge the three test files
+  * Append train and test files into one master file
+3. Extract only the measurements on the mean and standard deviation for each measurement.
+  * Read features dataset
+  * Keep wanted variables only (i.e. mean() and std())
+  * Cleans variable names before merging into master file
+  * Creates index that drops unwanted variables from master file (generates mc=master clean)
+  * Extract columns from master based on mean/std index
+4. Use descriptive activity names to name the activities in the data set
+  * Merges activity labels into master clean file (mc)
+5. Appropriately label the data set with descriptive variable names
+6. From the data set in step 4, create a second, independent tidy data set with the average of each variable for each activity and each subject
+  * Master file becomes mcby (master clean by Subject & Activity)
+  * Orders data by Subject and Activity
+7. Writes RunAnalysisTidy.txt file for submission
