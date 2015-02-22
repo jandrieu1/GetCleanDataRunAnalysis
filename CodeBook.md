@@ -2,7 +2,9 @@
 
 Note: the variables underpinning this project's dataset are described in full detail in the dataset's "features.txt" file, which can be seen once the dataset is downloaded to the working directory (see README.md).
 
-This dataset includes 180 observations across 68 variables. Its naming convention was simplified from the original version for the purposes of the Coursera Course Project. This simplified syntax includes:
+The origianl dataset included a variety of summary statistics. The dataset prepared for this project is a subset of the original dataset; it extracted only variables calculating the Mean and Standard Deviation of the original dataset (denoted by the "Measure Features") and then calculated the average of each variable for each activity and each subject.
+
+This dataset includes 180 observations across 68 variables. Out of the 68 variables, 66 are measures derived from the original dataset; their naming convention was simplified from the original version for the purposes of the Coursera Course Project. This simplified syntax includes (units have been normalized):
 
 * Prefix (first letter): t=Time or f=Frequency Domain Signals
 * Acceleration signals (see second and third letter(s)): B=Body; BB=BodyBody; G=Gravity
@@ -10,7 +12,7 @@ This dataset includes 180 observations across 68 variables. Its naming conventio
 * Estimation type: M=Mean value; S=Standard Deviation
 * Suffix: .X, .Y, and .Z denote 3-axial signals in the X, Y, and Z directions
 
-Non-measure variables include "Subject" and "Activity Label" as seen below:
+The two non-measure variables include "Subject" and "Activity Label" as seen below:
 * Subject: denotes subject performing activities (30 volunteers ages 19-48)
 * ActivityLabel: denotes type of activity performed by each subject  (1-6)
   - 1 WALKING
@@ -20,4 +22,4 @@ Non-measure variables include "Subject" and "Activity Label" as seen below:
   - 5 STANDING
   - 6 LAYING
 
-The origianl dataset included a variety of summary statistics. The dataset prepared for this project is a subset of the original dataset; it extracted only variables calculating the Mean and Standard Deviation of the original dataset (denoted by the "Measure Features") and then calculated the average of each variable for each activity and each subject.
+
