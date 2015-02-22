@@ -15,7 +15,6 @@ zipurl <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20
 download.file(zipurl, "dataset.zip", method="auto")
 unzip("dataset.zip", exdir="dataset")
 
-
 ### Merges the training and the test sets to create one data set ###
 
 # read and merge training files
@@ -83,6 +82,12 @@ feat = read.table(f_dir)
 feat2 <- data.frame(do.call('rbind', strsplit(as.character(feat$V2), '-', fixed=TRUE)))
 feat <- cbind(feat, feat2)
 featx <- feat[with(feat, X2 == "mean()" | X2 == "std()"), ]
+featx$varname <- gsub("\\-mean\\()", "M", featx$V2)
+featx$varname <- gsub("\\-std\\()", "S", featx$varname)
+featx$varname <- gsub("Body", "B", featx$varname)
+featx$varname <- gsub("Gravity", "G", featx$varname)
+
+featx[1:5, c(2, 6)]
 
 # create index
 
@@ -92,7 +97,6 @@ colind <- as.numeric(colind)
 # extract columns from master based on mean/std index
 
 mc <- master[, c(colind, 562:564)]
-str(mc)
 
 ### Uses descriptive activity names to name the activities in the data set
 
@@ -107,12 +111,10 @@ names(mc)[70]<- "ActivityLabel"
 
 ### Appropriately labels the data set with descriptive variable names. 
 
-featnames <- as.vector(featx[, 2])
+featnames <- as.vector(featx[, 6])
 featnames <- c("Label", featnames, "Subject", "dataset", "ActivityLabel")
 
 names(mc) <- c(featnames)
-
-names(mc)
 
 ### From the data set in step 4, creates a second, independent tidy data set with the 
 #   average of each variable for each activity and each subject
@@ -128,6 +130,65 @@ write.table(mcby, file="RunAnalysisTidy.txt", sep = " ", row.names = FALSE)
 
 
 
+
+These signals were used to estimate variables of the feature vector for each pattern:  
+  '-XYZ' is used to denote 3-axial signals in the X, Y and Z directions.
+
+tBodyAcc-XYZ
+tGravityAcc-XYZ
+tBodyAccJerk-XYZ
+tBodyGyro-XYZ
+tBodyGyroJerk-XYZ
+tBodyAccMag
+tGravityAccMag
+tBodyAccJerkMag
+tBodyGyroMag
+tBodyGyroJerkMag
+fBodyAcc-XYZ
+fBodyAccJerk-XYZ
+fBodyGyro-XYZ
+fBodyAccMag
+fBodyAccJerkMag
+fBodyGyroMag
+fBodyGyroJerkMag
+
+mean(): Mean value
+std(): Standard deviation
+
+
+# generate codebook
+
+Data <- within(Data,{
+  description(vote) <- "Vote intention"
+  description(region) <- "Region of residence"
+  description(income) <- "Household income"
+  wording(vote) <- "If a general election would take place next tuesday,
+the candidate of which party would you vote for?"
+  wording(income) <- "All things taken into account, how much do all
+household members earn in sum?"
+  foreach(x=c(vote,region),{
+    measurement(x) <- "nominal"
+  })
+  measurement(income) <- "ratio"
+  labels(vote) <- c(
+    Conservatives = 1,
+    Labour = 2,
+    "Liberal Democrats" = 3,
+    "Don't know" = 8,
+    "Answer refused" = 9,
+    "Not applicable" = 97,
+    "Not asked in survey" = 99)
+  labels(region) <- c(
+    England = 1,
+    Scotland = 2,
+    Wales = 3,
+    "Not applicable" = 97,
+    "Not asked in survey" = 99)
+  foreach(x=c(vote,region,income),{
+    annotation(x)["Remark"] <- "This is not a real survey item, of course ..."
+  })
+  missing.values(vote) <- c(8,9,97,99)
+  mi
 
 
 
