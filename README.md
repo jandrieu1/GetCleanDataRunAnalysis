@@ -13,7 +13,7 @@ https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Datas
 
 The script described below is the final outcome of Courera's "Getting and Cleaning Data" Course Project. Two files are associated with this project in addition to this README.md.
 * The **run_analysis.R** file contains the script that creates the final **"RunAnalysisTidy.txt"** dataset (see steps below)
-* The second is the project's codebook **(Codebook.md)** which provides a detailed description of the final dataset variables
+* The second is the project's codebook **(CodeBook.md)** which provides a detailed description of the final dataset variables
 
 The **run_analysis.R** script follows the seven major steps spelled out below:
 
