@@ -1,7 +1,15 @@
 # Coursera Getting and Cleaning Data
 ### Course Project: Run Analysis
 
-The following script is the final outcome of Courera's "Getting and Cleaning Data" Course Project.
+The script described below is the final outcome of Courera's "Getting and Cleaning Data" Course Project.
+
+The underlying dataset used for this project is based on data collected from the accelerometers from the Samsung Galaxy S smartphone. For a full description, please visit the following website:
+
+http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones
+
+The underlying dataset used for this project can be found at the link below: 
+
+https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip 
 
 There were five major steps associated with this project as spelled out below (from Course Project instructions):
 
