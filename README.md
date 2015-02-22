@@ -36,3 +36,11 @@ There were seven major steps associated with this project as spelled out below:
   * Master file becomes mcby (master clean by Subject & Activity)
   * Order data by Subject and Activity
 7. Write RunAnalysisTidy.txt file for submission
+
+## R code to read RunAnalysisTidy.txt as submitted in Course Project dashboard
+
+address <- "https://s3.amazonaws.com/coursera-uploads/user-d60262a1aa100af01ca6de7d/973498/asst-3/77a56890ba2611e488e81bc955611cb3.txt"
+address <- sub("^https", "http", address)
+data <- read.table(url(address), header = TRUE)
+View(data)
+
