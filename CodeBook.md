@@ -12,12 +12,12 @@ The naming convention was simplified for the purposes of the Coursera Course Pro
 Non-measure variables include "Subject" and "Activity Label"
 * Subject: denotes subject performing activities (30 volunteers ages 19-48)
 * ActivityLabel: denotes type of activity performed by each subject  (1-6)
--- 1 WALKING
--- 2 WALKING_UPSTAIRS
--- 3 WALKING_DOWNSTAIRS
--- 4 SITTING
--- 5 STANDING
--- 6 LAYING
+  - 1 WALKING
+  - 2 WALKING_UPSTAIRS
+  - 3 WALKING_DOWNSTAIRS
+  - 4 SITTING
+  - 5 STANDING
+  - 6 LAYING
 
 The origianl dataset included a variety of summary statistics; this dataset extracted only variables calculating the Mean and Standard Deviation of the original dataset (denoted by the "Measure Features").
 This dataset calculated the mean value of each of this subset dataset by Subject and Activity (denoted by Activity Label).
