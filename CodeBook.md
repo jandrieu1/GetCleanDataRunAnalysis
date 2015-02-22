@@ -1,6 +1,6 @@
 ## Course Project Codebook
 
-Note: the variables underpinning this project's dataset are described in full detail in the dataset's "features.txt" file, which can be seen once the dataset is downloaded to the working directory.
+Note: the variables underpinning this project's dataset are described in full detail in the dataset's "features.txt" file, which can be seen once the dataset is downloaded to the working directory (see README.md).
 
 This dataset includes 180 observations across 68 variables. Its naming convention was simplified from the original version for the purposes of the Coursera Course Project. This simplified syntax includes:
 
