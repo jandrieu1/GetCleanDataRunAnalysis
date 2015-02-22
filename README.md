@@ -7,7 +7,9 @@ The underlying dataset used for this project is based on data collected from the
 
 http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones
 
-The underlying dataset used for this project can be found at the link below: 
+The underlying dataset used for this project can be found at the link below:
+
+**(NOTE: the run_analysis.R script includes code that will download and unzip the file)**
 
 https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip 
 
